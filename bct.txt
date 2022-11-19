@@ -1,0 +1,40 @@
+3.
+pragma solidity 0.4.25;
+
+contract Bank{
+    int bal;
+    constructor() public{
+        bal=1;
+    }
+
+    function getBalance() view public returns(int) 
+    {
+        return bal;
+    } 
+    function withdraw(int amt) public{
+        bal=bal-amt;
+    }
+    function deposit(int amt) public{
+        bal=bal+amt;
+    }
+}
+4.pragma solidity ^0.8.0;
+contract StudentData{
+    struct Student{
+        string name;
+        int rollno;
+    }
+    Student[] record;
+    Student s;
+    event Log(string s);
+    function addStudent(string memory name,int roll) public{
+        record.push(Student(name,roll));
+    }
+    function showStudent() view public returns(Student[] memory){
+    
+        return record;
+    }
+    fallback() external payable{
+        emit Log("Fallback_called");
+    }
+}
